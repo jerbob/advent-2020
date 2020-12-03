@@ -12,7 +12,7 @@ lines = get_data(day=3).split("\n")
 def tree_exists(squares: str, index: int) -> bool:
     """Check if a tree exists in the provided index."""
     trees = cycle(square == "#" for square in squares)
-    return next(islice(trees, index, None))
+    return next(islice(trees, index, index + 1))
 
 
 def get_trees(width: int, height: int) -> int:
