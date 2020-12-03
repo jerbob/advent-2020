@@ -1,19 +1,25 @@
 """Submission for both parts of advent of code, day 3."""
 
 import math
+from itertools import cycle, islice
 
 from aocd import submit, get_data
-
-from day_3 import Row
 
 
 lines = get_data(day=3).split("\n")
 
 
+def tree_exists(squares: str, index: int) -> bool:
+    """Check if a tree exists in the provided index."""
+    return next(
+        islice(cycle(square == "#" for square in squares), index, stop=None)
+    )
+
+
 def get_trees(width: int, height: int) -> int:
     """Given a slope, return the number of trees encountered."""
     return sum(
-        not row % height and Row(line).is_tree(row // height * width)
+        not row % height and tree_exists(line, row // height * width)
         for row, line in enumerate(lines)
     )
 
