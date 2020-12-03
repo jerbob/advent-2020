@@ -13,7 +13,7 @@ lines = get_data(day=3).split("\n")
 def get_trees(width: int, height: int) -> int:
     """Given a slope, return the number of trees encountered."""
     return sum(
-        not row % height and Row(string=line).is_tree(row // height * width)
+        not row % height and Row(line).is_tree(row // height * width)
         for row, line in enumerate(lines)
     )
 
