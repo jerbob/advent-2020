@@ -18,8 +18,8 @@ class Passport(BaseModel):
     iyr: conint(ge=2010, le=2020)
     eyr: conint(ge=2020, le=2030)
     hgt: constr(regex=MEASUREMENT.pattern)
-    hcl: constr(regex=r"#[0-9a-f]{6}")
-    ecl: constr(regex=r"amb|blu|brn|gry|grn|hzl|oth")
+    hcl: constr(regex=r"^#[0-9a-f]{6}$")
+    ecl: constr(regex=r"^amb|blu|brn|gry|grn|hzl|oth$")
     pid: constr(regex=r"^[0-9]{9}$")
     cid: Optional[str]
 
