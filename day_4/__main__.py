@@ -19,8 +19,8 @@ class Passport(BaseModel):
     eyr: conint(ge=2020, le=2030)
     hgt: constr(regex=MEASUREMENT.pattern)
     hcl: constr(regex=r"#[0-9a-f]{6}")
-    ecl: constr(regex=r"(amb|blu|brn|gry|grn|hzl|oth)")
-    pid: constr(regex=r"[0-9]{9}")
+    ecl: constr(regex=r"amb|blu|brn|gry|grn|hzl|oth")
+    pid: constr(regex=r"^[0-9]{9}$")
     cid: Optional[str]
 
     @validator("hgt")
@@ -37,6 +37,7 @@ passports: int = 0
 for line in lines:
     with suppress(ValidationError):
         passport = Passport(**dict(pair.split(":") for pair in line.split()))
+        print(passport)
         passports += 1
 
 submit(passports, part="b")
