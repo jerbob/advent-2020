@@ -37,7 +37,6 @@ passports: int = 0
 for line in lines:
     with suppress(ValidationError):
         passport = Passport(**dict(pair.split(":") for pair in line.split()))
-        print(passport)
         passports += 1
 
 submit(passports, part="b")
