@@ -24,7 +24,7 @@ def get_seat_id(string: str) -> int:
 lowest, *seats, highest = sorted(map(get_seat_id, lines))
 submit(highest, part="a")
 
-for seat, target in zip(seats, count(lowest)):
+for seat, target in zip(seats, count(lowest + 1)):
     if seat != target:
         submit(target, part="b")
         break
