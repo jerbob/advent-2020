@@ -11,8 +11,10 @@ lines = get_data().strip().split("\n")
 def get_axis(string: str, upper: int, lower: int = 0) -> int:
     for letter in string:
         space = (upper - lower) // 2 + 1
-        upper -= (letter in ("F", "L")) * space
-        lower += (letter in ("B", "R")) * space
+        if letter in "FL":
+            upper -= space
+        if letter in "BR":
+            lower += space
     return upper
 
 
