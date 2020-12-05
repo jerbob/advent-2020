@@ -21,10 +21,10 @@ def get_seat_id(string: str) -> int:
     return get_axis(row, 127) * 8 + get_axis(column, 7)
 
 
-highest, *seats = sorted(map(get_seat_id, lines), reverse=True)
+lowest, *seats, highest = sorted(map(get_seat_id, lines))
 submit(highest, part="a")
 
-for seat, target in zip(seats, count(highest - 1, -1)):
+for seat, target in zip(seats, count(lowest)):
     if seat != target:
         submit(target, part="b")
         break
